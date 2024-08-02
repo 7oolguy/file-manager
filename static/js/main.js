@@ -175,3 +175,11 @@ const option = [
 ];
 
 option.forEach(item => createFilter(item.txt, item.funcA, item.funcD));
+
+//side bar on hover
+
+document.querySelector('.config').document.addEventListener('mouseover', openNav);
+
+function openNav(){
+    
+}
