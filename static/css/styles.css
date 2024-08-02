@@ -175,3 +175,31 @@ input[type="text"]:focus{
 #item-name{
     font-weight: bolder;
 }
+
+.side-bar{
+    top: 0;
+    right: 0;
+    position: absolute;
+    background-color: white;
+    height: 90vh;
+    padding-top: 95px;
+    width: 0px;
+    box-shadow: none;
+    transition: 1s ease;
+    display: flex;
+    align-items:flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    row-gap: 20px;
+    overflow: hidden;
+}
+
+.side-bar-item{
+    overflow: hidden;
+    display: none;
+    transition: 1.5s ease;
+}
+.side-bar-item p {
+    white-space: nowrap;
+    font-size: 18px;
+}

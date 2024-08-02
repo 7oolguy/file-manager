@@ -178,8 +178,79 @@ option.forEach(item => createFilter(item.txt, item.funcA, item.funcD));
 
 //side bar on hover
 
-document.querySelector('.config').document.addEventListener('mouseover', openNav);
+// Add event listener to the element with class 'rotating'
+document.querySelector('.rotating').addEventListener('mouseover', () => {
+    openNav();
+    console.log("I'm hovering config");
+});
 
-function openNav(){
-    
+// Add event listener to the element with class 'side-bar'
+document.querySelector('.side-bar').addEventListener('mouseleave', () => {
+    closeNav();
+    console.log("Mouse left");
+});
+
+function closeNav() {
+    let config = document.querySelector('.rotating');
+    let side_bar = document.querySelector('.side-bar');
+
+    if (config) {
+        config.style.zIndex = '2';
+    }
+
+    if (side_bar) {
+        side_bar.style.zIndex = '1';
+        side_bar.style.width = '0px';
+        side_bar.style.boxShadow = 'none'; // Combined style change
+
+        style = {
+            display: 'none',
+            margin: '0px',
+
+        };
+        
+        applyStylesToChildren('.side-bar', style);
+    } else {
+        console.error('Sidebar element not found');
+    }
+}
+
+function openNav() {
+    let config = document.querySelector('.rotating');
+    let side_bar = document.querySelector('.side-bar');
+
+    if (config) {
+        config.style.zIndex = '4';
+    }
+
+    if (side_bar) {
+        side_bar.style.zIndex = '2';
+        side_bar.style.width = '300px';
+        side_bar.style.boxShadow = '-5px 0 5px rgba(0, 0, 0, 0.2)';// Combined style change
+        style = {
+            display: 'flex',
+            margin: '5px 50px'
+        };
+        
+        applyStylesToChildren('.side-bar', style);
+    } else {
+        console.error('Sidebar element not found');
+    }
+}
+
+
+function applyStylesToChildren(parentSelector, styles) {
+    let parentElement = document.querySelector(parentSelector);
+
+    if (parentSelector) {
+        let children = parentElement.children;
+
+        for (let child of children) {
+            for (let [property, value] of Object.entries(styles)) {
+                child.style[property] = value;
+            }
+        }
+    } else {
+        console.error(`Parent element with selector ${parentSelector} not found`)
+    }
 }
