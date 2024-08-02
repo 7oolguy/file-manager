@@ -3,6 +3,7 @@
     margin: 0;
     user-select: none;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
 }
 
 .container{
@@ -34,6 +35,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: none;
 }
 
 .my-svg-center{
@@ -106,13 +108,20 @@ input[type="text"]:focus{
     transition: 0.5s ease;
 }
 
+svg {
+    background: none;
+}
+
 .search-btn:hover{
+    transition: box-shadow 0.1s;
     cursor: pointer;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: -1px -1px 5px #fff, 1px 1px 5px #999;
 }
 
 .search-btn:active{
-    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 5px 5px 5px -3px #888, inset -1px -1px 5px 3px #eee;
+    background-color: #e0e0e0;
+    color: #000;
 }
 
 .options{
@@ -123,6 +132,7 @@ input[type="text"]:focus{
     flex-wrap: wrap;
     row-gap: 5px;
     gap: 9px;
+    background: none;
 }
 
 .option{
@@ -195,11 +205,28 @@ input[type="text"]:focus{
 }
 
 .side-bar-item{
+    place-items: center;
+    background-color: aqua;
+    width: auto;
+    position: relative;
     overflow: hidden;
     display: none;
     transition: 1.5s ease;
+    cursor: default;
+    transition: box-shadow 0.5s ease-in-out;
 }
-.side-bar-item p {
+
+.side-bar-item a{
     white-space: nowrap;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: none;
+}
+
+.side-bar-item a:link,
+.side-bar-item a:visited{
     font-size: 18px;
 }

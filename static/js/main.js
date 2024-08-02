@@ -206,7 +206,7 @@ function closeNav() {
         style = {
             display: 'none',
             margin: '0px',
-
+            padding: '0px'
         };
         
         applyStylesToChildren('.side-bar', style);
@@ -229,7 +229,8 @@ function openNav() {
         side_bar.style.boxShadow = '-5px 0 5px rgba(0, 0, 0, 0.2)';// Combined style change
         style = {
             display: 'flex',
-            margin: '5px 50px'
+            margin: '5px 50px',
+            padding: '20px 30px'
         };
         
         applyStylesToChildren('.side-bar', style);
