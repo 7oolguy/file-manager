@@ -200,14 +200,14 @@ svg {
     align-items:flex-start;
     flex-direction: column;
     flex-wrap: nowrap;
-    row-gap: 20px;
+    row-gap: 10px;
     overflow: hidden;
 }
 
 .side-bar-item{
     place-items: center;
-    background-color: aqua;
     width: auto;
+    padding: 20px 30px;
     position: relative;
     overflow: hidden;
     display: none;
@@ -216,17 +216,32 @@ svg {
     transition: box-shadow 0.5s ease-in-out;
 }
 
-.side-bar-item a{
+a{
     white-space: nowrap;
+    padding: 10px 10px;
     font-size: 16px;
     font-weight: bold;
     border-radius: 10px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    background: none;
+    background-color: #fff;
+    cursor: pointer;
 }
 
-.side-bar-item a:link,
-.side-bar-item a:visited{
-    font-size: 18px;
+a:link,
+a:visited{
+    transition: box-shadow 0.1s;
+    color: #444;
+    text-decoration: none;
+}
+
+a:hover {
+    transition: box-shadow 0.1s;
+    box-shadow: -1px -1px 5px #fff, 1px 1px 5px #999;
+}
+
+a:active {
+    box-shadow: inset 5px 5px 5px -3px #888, inset -1px -1px 5px 3px #eee;
+    background-color: #e0e0e0;
+    color: #000;
 }

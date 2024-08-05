@@ -203,13 +203,6 @@ function closeNav() {
         side_bar.style.width = '0px';
         side_bar.style.boxShadow = 'none'; // Combined style change
 
-        style = {
-            display: 'none',
-            margin: '0px',
-            padding: '0px'
-        };
-        
-        applyStylesToChildren('.side-bar', style);
     } else {
         console.error('Sidebar element not found');
     }
@@ -228,9 +221,8 @@ function openNav() {
         side_bar.style.width = '300px';
         side_bar.style.boxShadow = '-5px 0 5px rgba(0, 0, 0, 0.2)';// Combined style change
         style = {
-            display: 'flex',
-            margin: '5px 50px',
-            padding: '20px 30px'
+            display: 'block',
+            margin: '5px 30px',
         };
         
         applyStylesToChildren('.side-bar', style);
@@ -253,5 +245,110 @@ function applyStylesToChildren(parentSelector, styles) {
         }
     } else {
         console.error(`Parent element with selector ${parentSelector} not found`)
+    }
+}
+
+// Function to dynamically create sidebar items
+function displayConfig(text, link='#', funct=null) {
+    // Select the parent element where the sidebar item will be appended
+    let parentElement = document.querySelector('.side-bar');
+
+    // Create a new div element and add a class to it
+    var div = document.createElement('div');
+    div.classList.add('side-bar-item');
+
+    // Create a new anchor element and add a class to it
+    var a = document.createElement('a');
+    a.classList.add('configuration');
+
+    // Set the text and link for the anchor element
+    a.href = link;
+    a.innerText = text;
+
+    // Append the anchor element to the div
+    div.appendChild(a);
+
+    // Append the div to the parent element
+    parentElement.appendChild(div);
+
+    // If a function is provided and is of type function, add an event listener to the anchor element
+    if (typeof funct === 'function') {
+        a.addEventListener('click', funct);
+    }
+}
+
+// Configuration for sidebar items
+const config = [
+    { "txt": "Organize Files", "link": "#", "funct": organizePage },
+    { "txt": "Navigation", "link": "#", "funct": navigationPage }
+];
+
+// Loop through the config array to create sidebar items
+config.forEach(item => displayConfig(item.txt, item.link, item.funct));
+
+// Function to handle the "Organize Files" action
+function organizePage() {
+    hideAllChildren('.container');
+}
+
+// Function to handle the "Navigation" action
+function navigationPage() {
+    hideAllChildren('.container');
+    showAllChildren('.navigation');
+}
+
+// WeakMap to store the original display values of elements
+const originalDisplayMap = new WeakMap();
+
+// Function to hide all child elements of a given parent element
+function hideAllChildren(parentSelector) {
+    // Select the parent element using the given selector
+    let parentElement = document.querySelector(parentSelector);
+    
+    // Check if the parent element exists
+    if (parentElement) {
+        // Select all child elements of the parent element
+        let children = parentElement.querySelectorAll('*');
+
+        // Store the original display value and set the display property to none
+        children.forEach(child => {
+            if (!originalDisplayMap.has(child)) {
+                // Store the original display value if not already stored
+                let currentDisplay = getComputedStyle(child).display;
+                originalDisplayMap.set(child, currentDisplay);
+            }
+            // Set the display to none
+            child.style.display = 'none';
+        });
+    } else {
+        console.error('Parent element not found');
+    }
+}
+
+// Function to show all child elements of a given parent element
+function showAllChildren(parentSelector) {
+    // Select the parent element using the given selector
+    let parentElement = document.querySelector(parentSelector);
+    
+    // Check if the parent element exists
+    if (parentElement) {
+        // Select all child elements of the parent element
+        let children = parentElement.querySelectorAll('*');
+
+        // Revert the display property to the original value
+        children.forEach(child => {
+            if (originalDisplayMap.has(child)) {
+                let originalDisplay = originalDisplayMap.get(child);
+                if (originalDisplay === 'none') {
+                    // Remove the inline display style to show the element again
+                    child.style.removeProperty('display');
+                } else {
+                    // Set the display to the original value
+                    child.style.display = originalDisplay;
+                }
+            }
+        });
+    } else {
+        console.error('Parent element not found');
     }
 }
