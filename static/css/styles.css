@@ -92,6 +92,7 @@ input[type="text"]:focus{
 }
 
 .search-svg{
+    background: none;
     width: 40px;
     height: 40px;
     display: flex;

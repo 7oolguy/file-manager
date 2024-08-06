@@ -4,7 +4,8 @@
     <head>
         <title>Flask Web App</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-        <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+            <!-- Ensure that the paths match the actual file locations -->
+        <script type="module" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     </head>
     <body>
         <header>
